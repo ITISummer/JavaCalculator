@@ -1,11 +1,11 @@
-package java¼ÆËãÆ÷;
+package javaè®¡ç®—å™¨;
 
-import java.util.Scanner;
 import java.util.Stack;
-public class Stack1{
-//	public static void main(String[] args) {
+
+public class Stack1 {
+	//	public static void main(String[] args) {
 //		Scanner scan = new Scanner(System.in);
-//		System.out.print("ÇëÊäÈëÒ»¸öÊı£º");
+//		System.out.print("è¯·è¾“å…¥ä¸€ä¸ªæ•°ï¼š");
 //		int N = scan.nextInt();
 //		String s;
 //		for (int i = 0; i < N; i++) {
@@ -16,23 +16,23 @@ public class Stack1{
 //				System.out.println("No");
 //			}
 //		}
-//	}//main·½·¨½áÊø
+//	}//mainæ–¹æ³•ç»“æŸ
 	private static boolean isMatch(String s) {
-		Stack <Character>sk = new Stack<Character>();
+		Stack<Character> sk = new Stack<Character>();
 		for (int i = 0; i < s.length(); i++) {
-			//'('ºÍ')'·ûºÅ
+			//'('å’Œ')'ç¬¦å·
 			if (s.charAt(i) == '(') {
-				sk.push('(');//ÈëÕ»
+				sk.push('(');//å…¥æ ˆ
 			}
 			if (s.charAt(i) == ')') {
-				if (!sk.isEmpty() && sk.pop() == '(')//³öÕ» sk.pop() == '('ÅĞ¶ÏskÕ»¶¥²¿ÔªËØÊÇ·ñÎª'('
+				if (!sk.isEmpty() && sk.pop() == '(')//å‡ºæ ˆ sk.pop() == '('åˆ¤æ–­skæ ˆé¡¶éƒ¨å…ƒç´ æ˜¯å¦ä¸º'('
 					continue;
 				else
 					return false;
 			}
-			//'['ºÍ']'·ûºÅ
+			//'['å’Œ']'ç¬¦å·
 			if (s.charAt(i) == '[') {
-				sk.push('[');//ÈëÕ»
+				sk.push('[');//å…¥æ ˆ
 			}
 			if (s.charAt(i) == ']') {
 				if (!sk.isEmpty() && sk.pop() == '[')
@@ -40,9 +40,9 @@ public class Stack1{
 				else
 					return false;
 			}
-			//'{'ºÍ'}'·ûºÅ
+			//'{'å’Œ'}'ç¬¦å·
 			if (s.charAt(i) == '{') {
-				sk.push('{');//ÈëÕ»
+				sk.push('{');//å…¥æ ˆ
 			}
 			if (s.charAt(i) == '}') {
 				if (!sk.isEmpty() && sk.pop() == '}')
@@ -50,7 +50,7 @@ public class Stack1{
 				else
 					return false;
 			}
-		}//forÑ­»·½áÊø
+		}//forå¾ªç¯ç»“æŸ
 		if (sk.isEmpty())
 			return true;
 		else

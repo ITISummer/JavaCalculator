@@ -1,204 +1,202 @@
-package java¼ÆËãÆ÷;
+package javaè®¡ç®—å™¨;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Stack;
 
-import javax.swing.*;
-
 @SuppressWarnings("serial")
-public class Calc extends JFrame implements ActionListener{
-/**********************³ÉÔ±±äÁ¿µÄÉêÃ÷ÓëÊµÀı»¯***********************/
-	   //°´Å¥ 
-	    JButton b[] = new JButton[19];
-       //Ãæ°å
-       JPanel JP1=new JPanel();
-       JPanel JP2=new JPanel();
-       JPanel JP3=new JPanel();
-       JPanel JP4=new JPanel();
-       JPanel JP5=new JPanel();
-       JPanel JP6=new JPanel();
-       JPanel JP7=new JPanel();
-       JPanel JP8=new JPanel();
-       //±êÇ©ºÍÎÄ±¾¿ò
-       JLabel JL1=new JLabel("ÊäÈë¿ò£º");
-       JTextArea JA1=new JTextArea(1,12);
-       JLabel JL2=new JLabel("Ê®½øÖÆ£º");
-       JTextField JT2=new JTextField(12);
-       
-       JLabel JL3=new JLabel("¶ş½øÖÆ£º");
-       JTextField JT3=new JTextField(12);
-       //´´½¨Ò»¸öÊı×é,ÏòÆäÖĞÌí¼ÓÊäÈëµÄ±í´ïÊ½
-       //char[] arraychar=new char[30];
-/**********************³ÉÔ±±äÁ¿µÄÉêÃ÷ÓëÊµÀı»¯***********************/
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-/**¹¹Ôì·½·¨*/ 
-public Calc() {
-   initialize();//µ÷ÓÃ³õÊ¼»¯·½·¨	   
-   this.setTitle("Calculator");
-   this.setBounds(1100, 200, 320, 500);
-   this.setVisible(true);
-   this.setLayout(new GridLayout(8,1));
-   this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//ÉèÖÃ´°Ìå¹Ø±ÕÄ£Ê½
-}//¹¹Ôì·½·¨½áÊø
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-/**³õÊ¼»¯·½·¨*/
-public void initialize() {
-	  
-	//¶¨ÒåÓëÌí¼Ó°´Å¥
-	String button_name[]={"clear","¡û","%","/","7","8","9","*","4","5","6","-","1","2","3","+","0",".","="};
-	for(int i=0;i<button_name.length;i++) {
-		b[i] = new JButton(button_name[i]);
-		b[i].setForeground(Color.BLUE);//Êı×Ö¼ü ÉèÖÃÇ°¾°É«Îª À¶ÑÕÉ«
-		b[i].setFont(new Font("ËÎÌå",Font.PLAIN,30));//ÉèÖÃ×ÖÌå¸ñÊ½
-		b[i].addActionListener(this);
-		if(i>=0&&i<=3) 
-			JP4.add(b[i]);
-		else if(i>=4&&i<=7)
-			JP5.add(b[i]);
-		else if(i>=8&&i<=11)
-			JP6.add(b[i]);
-		else if(i>=12&&i<=15)
-			JP7.add(b[i]);
-		else if(i>=16&&i<=18)
-			JP8.add(b[i]);
-	}
-	//Ìí¼ÓÃæ°å
-	JP1.add(JL1);JP1.add(JA1);//Ìí¼ÓÊäÈë¿ò±êÇ©
-    JP2.add(JL2);JP2.add(JT2);//Ìí¼ÓÊ®½øÖÆ¿òºÍ±êÇ©
-    JP3.add(JL3);JP3.add(JT3);//Ìí¼Ó¶ş½øÖÆ¿òºÍ±êÇ©
-    //ÉèÖÃÎÄ±¾Çø×ÖÌå
-    JA1.setFont(new Font("ËÎÌå",Font.ITALIC,30));
-    JT2.setFont(new Font("ËÎÌå",Font.ITALIC,30));
-    JT3.setFont(new Font("ËÎÌå",Font.ITALIC,30));
-    this.add(JP1);this.add(JP2);this.add(JP3);this.add(JP4);
-    this.add(JP5);this.add(JP6);this.add(JP7);this.add(JP8);
-    b[1].setEnabled(false);//¸Õ¿ªÊ¼ÉèÖÃµ¥Ñ¡É¾³ı¼ü²»¿É²Ù×÷
-    
-    }//³õÊ¼»¯·½·¨½áÊø
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-public static void main(String[] args) {
-	new Calc();
-	//operandStack.pop()
-}//Ö÷·½·¨½áÊø
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-/**ÊÂ¼ş¼àÌı·½·¨*/
-public void actionPerformed(ActionEvent e) {
-	if(e.getSource()==b[0]) {
-		JA1.setText("");//Çå¿ÕÎÄ±¾Çø
-	    JT2.setText("");//Çå¿ÕÎÄ±¾¿ò
-	    JT3.setText("");//Çå¿ÕÎÄ±¾¿ò
-	    JA1.setEnabled(true);
-	    isJA1empty();
-	}
-	else if(e.getSource()==b[1]) {
-			int length=JA1.getText().length();
-			JA1.setText(JA1.getText().substring(0,length-1));
-	        length--;
-	        isJA1empty();
-	}
-	else if(e.getSource()==b[2]) {
-		JA1.append(b[2].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[3]) {
-		JA1.append(b[3].getText());
-		 
-		 isJA1empty();
-		
-	}
-	else if(e.getSource()==b[4]) {
-		JA1.append(b[4].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[5]) {
-		JA1.append(b[5].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[6]) {
-		JA1.append(b[6].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[7]) {
-		JA1.append(b[7].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[8]) {
-		JA1.append(b[8].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[9]) {
-		JA1.append(b[9].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[10]) {
-		JA1.append(b[10].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[11]) {
-		JA1.append(b[11].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[12]) {
-		JA1.append(b[12].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[13]) {
-		JA1.append(b[13].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[14]) {
-		JA1.append(b[14].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[15]) {
-		JA1.append(b[15].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[16]) {
-		JA1.append(b[16].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[17]) {
-		JA1.append(b[17].getText());
-		 isJA1empty();
-	}
-	else if(e.getSource()==b[18]) {
-		//JA1.append(b[18].getText());
-	    //arraychar=JA1.getText().toCharArray();
-	    isJA1empty();
-	    isCharacter();
-	    //count();
-	}
+public class Calc extends JFrame implements ActionListener {
+	/**********************æˆå‘˜å˜é‡çš„ç”³æ˜ä¸å®ä¾‹åŒ–***********************/
+	//æŒ‰é’®
+	JButton b[] = new JButton[19];
+	//é¢æ¿
+	JPanel JP1 = new JPanel();
+	JPanel JP2 = new JPanel();
+	JPanel JP3 = new JPanel();
+	JPanel JP4 = new JPanel();
+	JPanel JP5 = new JPanel();
+	JPanel JP6 = new JPanel();
+	JPanel JP7 = new JPanel();
+	JPanel JP8 = new JPanel();
+	//æ ‡ç­¾å’Œæ–‡æœ¬æ¡†
+	JLabel JL1 = new JLabel("è¾“å…¥æ¡†ï¼š");
+	JTextArea JA1 = new JTextArea(1, 12);
+	JLabel JL2 = new JLabel("åè¿›åˆ¶ï¼š");
+	JTextField JT2 = new JTextField(12);
 
-}//ÊÂ¼ş¼àÌı·½·¨½áÊø
-//¶ÔarraycharÊı×éÀïÃæµÄÄÚÈİ½øĞĞÅĞ¶ÏºÍ¼ÆËã
+	JLabel JL3 = new JLabel("äºŒè¿›åˆ¶ï¼š");
+	JTextField JT3 = new JTextField(12);
+	//åˆ›å»ºä¸€ä¸ªæ•°ç»„,å‘å…¶ä¸­æ·»åŠ è¾“å…¥çš„è¡¨è¾¾å¼
+	//char[] arraychar=new char[30];
+/**********************æˆå‘˜å˜é‡çš„ç”³æ˜ä¸å®ä¾‹åŒ–***********************/
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
-/**@½øĞĞÔËËãµÄ·½·¨*/
+
+	/**
+	 * æ„é€ æ–¹æ³•
+	 */
+	public Calc() {
+		initialize();//è°ƒç”¨åˆå§‹åŒ–æ–¹æ³•
+		this.setTitle("Calculator");
+		this.setBounds(1100, 200, 320, 500);
+		this.setVisible(true);
+		this.setLayout(new GridLayout(8, 1));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//è®¾ç½®çª—ä½“å…³é—­æ¨¡å¼
+	}//æ„é€ æ–¹æ³•ç»“æŸ
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+	/**
+	 * åˆå§‹åŒ–æ–¹æ³•
+	 */
+	public void initialize() {
+
+		//å®šä¹‰ä¸æ·»åŠ æŒ‰é’®
+		String button_name[] = {"clear", "â†", "%", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "0", ".", "="};
+		for (int i = 0; i < button_name.length; i++) {
+			b[i] = new JButton(button_name[i]);
+			b[i].setForeground(Color.BLUE);//æ•°å­—é”® è®¾ç½®å‰æ™¯è‰²ä¸º è“é¢œè‰²
+			b[i].setFont(new Font("å®‹ä½“", Font.PLAIN, 30));//è®¾ç½®å­—ä½“æ ¼å¼
+			b[i].addActionListener(this);
+			if (i >= 0 && i <= 3)
+				JP4.add(b[i]);
+			else if (i >= 4 && i <= 7)
+				JP5.add(b[i]);
+			else if (i >= 8 && i <= 11)
+				JP6.add(b[i]);
+			else if (i >= 12 && i <= 15)
+				JP7.add(b[i]);
+			else if (i >= 16 && i <= 18)
+				JP8.add(b[i]);
+		}
+		//æ·»åŠ é¢æ¿
+		JP1.add(JL1);
+		JP1.add(JA1);//æ·»åŠ è¾“å…¥æ¡†æ ‡ç­¾
+		JP2.add(JL2);
+		JP2.add(JT2);//æ·»åŠ åè¿›åˆ¶æ¡†å’Œæ ‡ç­¾
+		JP3.add(JL3);
+		JP3.add(JT3);//æ·»åŠ äºŒè¿›åˆ¶æ¡†å’Œæ ‡ç­¾
+		//è®¾ç½®æ–‡æœ¬åŒºå­—ä½“
+		JA1.setFont(new Font("å®‹ä½“", Font.ITALIC, 30));
+		JT2.setFont(new Font("å®‹ä½“", Font.ITALIC, 30));
+		JT3.setFont(new Font("å®‹ä½“", Font.ITALIC, 30));
+		this.add(JP1);
+		this.add(JP2);
+		this.add(JP3);
+		this.add(JP4);
+		this.add(JP5);
+		this.add(JP6);
+		this.add(JP7);
+		this.add(JP8);
+		b[1].setEnabled(false);//åˆšå¼€å§‹è®¾ç½®å•é€‰åˆ é™¤é”®ä¸å¯æ“ä½œ
+
+	}//åˆå§‹åŒ–æ–¹æ³•ç»“æŸ
+
+	////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+	public static void main(String[] args) {
+		new Calc();
+		//operandStack.pop()
+	}//ä¸»æ–¹æ³•ç»“æŸ
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+	/**
+	 * äº‹ä»¶ç›‘å¬æ–¹æ³•
+	 */
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == b[0]) {
+			JA1.setText("");//æ¸…ç©ºæ–‡æœ¬åŒº
+			JT2.setText("");//æ¸…ç©ºæ–‡æœ¬æ¡†
+			JT3.setText("");//æ¸…ç©ºæ–‡æœ¬æ¡†
+			JA1.setEnabled(true);
+			isJA1empty();
+		} else if (e.getSource() == b[1]) {
+			int length = JA1.getText().length();
+			JA1.setText(JA1.getText().substring(0, length - 1));
+			length--;
+			isJA1empty();
+		} else if (e.getSource() == b[2]) {
+			JA1.append(b[2].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[3]) {
+			JA1.append(b[3].getText());
+
+			isJA1empty();
+
+		} else if (e.getSource() == b[4]) {
+			JA1.append(b[4].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[5]) {
+			JA1.append(b[5].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[6]) {
+			JA1.append(b[6].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[7]) {
+			JA1.append(b[7].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[8]) {
+			JA1.append(b[8].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[9]) {
+			JA1.append(b[9].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[10]) {
+			JA1.append(b[10].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[11]) {
+			JA1.append(b[11].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[12]) {
+			JA1.append(b[12].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[13]) {
+			JA1.append(b[13].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[14]) {
+			JA1.append(b[14].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[15]) {
+			JA1.append(b[15].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[16]) {
+			JA1.append(b[16].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[17]) {
+			JA1.append(b[17].getText());
+			isJA1empty();
+		} else if (e.getSource() == b[18]) {
+			//JA1.append(b[18].getText());
+			//arraychar=JA1.getText().toCharArray();
+			isJA1empty();
+			isCharacter();
+			//count();
+		}
+
+	}//äº‹ä»¶ç›‘å¬æ–¹æ³•ç»“æŸ
+//å¯¹arraycharæ•°ç»„é‡Œé¢çš„å†…å®¹è¿›è¡Œåˆ¤æ–­å’Œè®¡ç®—
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+/**@è¿›è¡Œè¿ç®—çš„æ–¹æ³•*/
 /*public void questionsOf0() {
 	for(int i=0;i<arraychar.length;i++) {
     	
     	if(arraychar[i]=='/') {
     		if(arraychar[i+1]=='0') {
-    			JA1.setText("ÎŞĞ§ÊäÈë");
+    			JA1.setText("æ— æ•ˆè¾“å…¥");
     			JA1.setEnabled(false);
     		}
     		else {
@@ -212,7 +210,7 @@ public void actionPerformed(ActionEvent e) {
     	
     	if(arraychar[i]=='%') {
     		if(arraychar[i+1]=='0') {
-    			JA1.setText("ÎŞĞ§ÊäÈë");
+    			JA1.setText("æ— æ•ˆè¾“å…¥");
     			JA1.setEnabled(false);
     		}
     		else {
@@ -222,131 +220,142 @@ public void actionPerformed(ActionEvent e) {
     		}
     		}
 	}
-}*///½øĞĞÔËËãµÄ·½·¨½áÊø
+}*///è¿›è¡Œè¿ç®—çš„æ–¹æ³•ç»“æŸ
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
-/**@Õâ¸ö·½·¨µÄ×÷ÓÃ¾ÍÊÇÊ¹ÓÃ¿Õ¸ñ·Ö¸î×Ö·û´®£¬ÒÔ±ãºóÃæÊ¹ÓÃ·Ö¸îº¯ÊıÊ¹µÃ½«×Ö·û´®·Ö¸î³ÉÊı×é*/
-public String resetExpression(String s) {
-    String result = "";
-    for (int i = 0; i < s.length(); i++) {
-        if (s.charAt(i) == '(' || s.charAt(i) == ')' ||
-                s.charAt(i) == '+' || s.charAt(i) == '-'
-                || s.charAt(i) == '*' || s.charAt(i) == '/'|| s.charAt(i) == '%')
-            result += " " + s.charAt(i) + " ";
-        else
-            result += s.charAt(i);
-    }
-    System.out.println(result);
-    return result;
-}//ÖØÖÃ±í´ïÊ½·½·¨½áÊø
+
+	/**
+	 * @è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨å°±æ˜¯ä½¿ç”¨ç©ºæ ¼åˆ†å‰²å­—ç¬¦ä¸²ï¼Œä»¥ä¾¿åé¢ä½¿ç”¨åˆ†å‰²å‡½æ•°ä½¿å¾—å°†å­—ç¬¦ä¸²åˆ†å‰²æˆæ•°ç»„
+	 */
+	public String resetExpression(String s) {
+		String result = "";
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == '(' || s.charAt(i) == ')' ||
+					s.charAt(i) == '+' || s.charAt(i) == '-'
+					|| s.charAt(i) == '*' || s.charAt(i) == '/' || s.charAt(i) == '%')
+				result += " " + s.charAt(i) + " ";
+			else
+				result += s.charAt(i);
+		}
+		System.out.println(result);
+		return result;
+	}//é‡ç½®è¡¨è¾¾å¼æ–¹æ³•ç»“æŸ
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
-/**@½øĞĞÔËËã·ûºÍÊı¾İ·ûµÄÅĞ¶ÏÈëÕ»²Ù×÷*/
-public int evaluateExpression(String expression) {
-    Stack<Integer> operandStack = new Stack<>();//´´½¨Ò»¸öÊı¾İÕ»
-    Stack<Character> operatorStack = new Stack<>();//´´½¨Ò»¸öÔËËã·ûÕ»
-    expression = resetExpression(expression);//´¦Àí±í´ïÊ½,ÔËËã·ûÇ°ºó¼Ó¿Õ¸ñ
-    String[] tokens = expression.split(" ");//¸ù¾İÆ¥Åä¸ø¶¨µÄÕıÔò±í´ïÊ½À´²ğ·Ö´Ë×Ö·û´®¡£ ·µ»ØÖµÊÇ×Ö·û´®Êı×é
+
+	/**
+	 * @è¿›è¡Œè¿ç®—ç¬¦å’Œæ•°æ®ç¬¦çš„åˆ¤æ–­å…¥æ ˆæ“ä½œ
+	 */
+	public int evaluateExpression(String expression) {
+		Stack<Integer> operandStack = new Stack<>();//åˆ›å»ºä¸€ä¸ªæ•°æ®æ ˆ
+		Stack<Character> operatorStack = new Stack<>();//åˆ›å»ºä¸€ä¸ªè¿ç®—ç¬¦æ ˆ
+		expression = resetExpression(expression);//å¤„ç†è¡¨è¾¾å¼,è¿ç®—ç¬¦å‰ååŠ ç©ºæ ¼
+		String[] tokens = expression.split(" ");//æ ¹æ®åŒ¹é…ç»™å®šçš„æ­£åˆ™è¡¨è¾¾å¼æ¥æ‹†åˆ†æ­¤å­—ç¬¦ä¸²ã€‚ è¿”å›å€¼æ˜¯å­—ç¬¦ä¸²æ•°ç»„
 //    for(int i=0;i<tokens.length;i++)
 //    System.out.print(tokens[i]);
 //    System.out.println();
-    //¸Ã·½·¨µÄ×÷ÓÃ¾ÍÏñÊÇÊ¹ÓÃ¸ø¶¨µÄ±í´ïÊ½ºÍÏŞÖÆ²ÎÊı 0 À´µ÷ÓÃÁ½²ÎÊı split ÖØÔØ·½·¨¡£Òò´Ë£¬ËùµÃÊı×éÖĞ²»°üÀ¨½áÎ²¿Õ×Ö·û´®¡£
-    for (String token : tokens) {//µ¥¸öÔËËã·û×Ö·û¾ÍÊÇÒ»¸ö×Ö·û´®
-    	if (token.length() == 0)   //Èç¹ûÊÇ¿Õ¸ñµÄ»°¾Í¼ÌĞøÑ­»·£¬Ê²Ã´Ò²²»²Ù×÷
-            continue;
-    	//Èç¹ûÊÇ¼Ó¼õµÄ»°£¬ÒòÎª¼Ó¼õµÄÓÅÏÈ¼¶×îµÍ£¬Òò´ËÕâÀïµÄÖ»ÒªÓöµ½¼Ó¼õºÅ£¬ÎŞÂÛ²Ù×÷·ûÕ»ÖĞµÄÊÇÊ²Ã´ÔËËã·û¶¼ÒªÔËËã
-        else if (token.charAt(0) == '+' || token.charAt(0) == '-') {
-            //µ±Õ»²»ÊÇ¿ÕµÄ£¬²¢ÇÒÕ»ÖĞ×îÉÏÃæµÄÒ»¸öÔªËØÊÇ¼Ó¼õ³Ë³ıµÄÈÎÒâÒ»¸ö
-            while (!operatorStack.isEmpty()&&(operatorStack.peek() == '-' || operatorStack.peek() == '+' 
-            		|| operatorStack.peek() == '/' || operatorStack.peek() == '*'|| operatorStack.peek() == '%')) {
-                processAnOperator(operandStack, operatorStack);   //¿ªÊ¼ÔËËã
-            }
-            operatorStack.push(token.charAt(0));   //ÔËËãÍêÖ®ºó½«µ±Ç°µÄÔËËã·ûÈëÕ»
-        }//else ifÓï¾ä½áÊø
-        //µ±Ç°ÔËËã·ûÊÇ³Ë³ıµÄÊ±ºò£¬ÒòÎªÓÅÏÈ¼¶¸ßÓÚ¼Ó¼õ£¬Òò´ËÒªÅĞ¶Ï×îÉÏÃæµÄÊÇ·ñÊÇ³Ë³ı£¬Èç¹ûÊÇ³Ë³ı¾ÍÔËËã£¬·ñÔòµÄ»°Ö±½ÓÈëÕ»
-        else if (token.charAt(0) == '*' || token.charAt(0) == '/' || token.charAt(0) == '%') {
-        		while (!operatorStack.isEmpty()&&(operatorStack.peek() == '/' || operatorStack.peek() == '*'|| operatorStack.peek() == '%')) {
-                processAnOperator(operandStack, operatorStack);
-            }
-            operatorStack.push(token.charAt(0));   //½«µ±Ç°²Ù×÷·ûÈëÕ»
-        }//else ifÓï¾ä½áÊø
-        //Èç¹ûÊÇ×óÀ¨ºÅµÄ»°Ö±½ÓÈëÕ»£¬Ê²Ã´Ò²²»ÓÃ²Ù×÷,trim()º¯ÊıÊÇÓÃÀ´È¥³ı¿Õ¸ñµÄ£¬ÓÉÓÚÉÏÃæµÄ·Ö¸î²Ù×÷¿ÉÄÜ»áÁîÔËËã·û´øÓĞ¿Õ¸ñ
-        else if (token.trim().charAt(0) == '(') {
-            operatorStack.push('(');
-        }
-        //Èç¹ûÊÇÓÒÀ¨ºÅµÄ»°£¬Çå³ıÕ»ÖĞµÄÔËËã·ûÖ±ÖÁ×óÀ¨ºÅ
-        else if (token.trim().charAt(0) == ')') {
-            while (operatorStack.peek() != '(') {
-                processAnOperator(operandStack, operatorStack);    //¿ªÊ¼ÔËËã
-            }
-            operatorStack.pop();   //ÕâÀïµÄÊÇÔËËãÍêÖ®ºóÇå³ı×óÀ¨ºÅ£¬ÈÃ×óÀ¨ºÅ³öÔËËã·ûÕ»
-        }
-        //ÕâÀïÈç¹ûÊÇÊı×ÖµÄ»°Ö±½ÓÈëÊı¾İµÄÕ»
-        else {
-            operandStack.push(Integer.parseInt(token));   //½«Êı×Ö×Ö·û´®×ª»»³ÉÊı×ÖÈ»ºóÑ¹ÈëÕ»ÖĞ
-        }
-    }//forÑ­»·½áÊø
-    //×îºóµ±ÔËËã·ûÕ»ÖĞ²»ÊÇ¿ÕµÄÊ±ºò¼ÌĞøÔËËã£¬Ö±µ½Õ»ÖĞÎª¿Õ¼´¿É
-    while (!operatorStack.isEmpty()) {
-        processAnOperator(operandStack, operatorStack);
-    }
-    return operandStack.pop();    //´ËÊ±Êı¾İÕ»ÖĞµÄÊı¾İ¾ÍÊÇÔËËãµÄ½á¹û
-}//ÔËËã·ûºÏÊı¾İ·ûÈëÕ»·½·¨½áÊø
+		//è¯¥æ–¹æ³•çš„ä½œç”¨å°±åƒæ˜¯ä½¿ç”¨ç»™å®šçš„è¡¨è¾¾å¼å’Œé™åˆ¶å‚æ•° 0 æ¥è°ƒç”¨ä¸¤å‚æ•° split é‡è½½æ–¹æ³•ã€‚å› æ­¤ï¼Œæ‰€å¾—æ•°ç»„ä¸­ä¸åŒ…æ‹¬ç»“å°¾ç©ºå­—ç¬¦ä¸²ã€‚
+		for (String token : tokens) {//å•ä¸ªè¿ç®—ç¬¦å­—ç¬¦å°±æ˜¯ä¸€ä¸ªå­—ç¬¦ä¸²
+			if (token.length() == 0)   //å¦‚æœæ˜¯ç©ºæ ¼çš„è¯å°±ç»§ç»­å¾ªç¯ï¼Œä»€ä¹ˆä¹Ÿä¸æ“ä½œ
+				continue;
+				//å¦‚æœæ˜¯åŠ å‡çš„è¯ï¼Œå› ä¸ºåŠ å‡çš„ä¼˜å…ˆçº§æœ€ä½ï¼Œå› æ­¤è¿™é‡Œçš„åªè¦é‡åˆ°åŠ å‡å·ï¼Œæ— è®ºæ“ä½œç¬¦æ ˆä¸­çš„æ˜¯ä»€ä¹ˆè¿ç®—ç¬¦éƒ½è¦è¿ç®—
+			else if (token.charAt(0) == '+' || token.charAt(0) == '-') {
+				//å½“æ ˆä¸æ˜¯ç©ºçš„ï¼Œå¹¶ä¸”æ ˆä¸­æœ€ä¸Šé¢çš„ä¸€ä¸ªå…ƒç´ æ˜¯åŠ å‡ä¹˜é™¤çš„ä»»æ„ä¸€ä¸ª
+				while (!operatorStack.isEmpty() && (operatorStack.peek() == '-' || operatorStack.peek() == '+'
+						|| operatorStack.peek() == '/' || operatorStack.peek() == '*' || operatorStack.peek() == '%')) {
+					processAnOperator(operandStack, operatorStack);   //å¼€å§‹è¿ç®—
+				}
+				operatorStack.push(token.charAt(0));   //è¿ç®—å®Œä¹‹åå°†å½“å‰çš„è¿ç®—ç¬¦å…¥æ ˆ
+			}//else ifè¯­å¥ç»“æŸ
+			//å½“å‰è¿ç®—ç¬¦æ˜¯ä¹˜é™¤çš„æ—¶å€™ï¼Œå› ä¸ºä¼˜å…ˆçº§é«˜äºåŠ å‡ï¼Œå› æ­¤è¦åˆ¤æ–­æœ€ä¸Šé¢çš„æ˜¯å¦æ˜¯ä¹˜é™¤ï¼Œå¦‚æœæ˜¯ä¹˜é™¤å°±è¿ç®—ï¼Œå¦åˆ™çš„è¯ç›´æ¥å…¥æ ˆ
+			else if (token.charAt(0) == '*' || token.charAt(0) == '/' || token.charAt(0) == '%') {
+				while (!operatorStack.isEmpty() && (operatorStack.peek() == '/' || operatorStack.peek() == '*' || operatorStack.peek() == '%')) {
+					processAnOperator(operandStack, operatorStack);
+				}
+				operatorStack.push(token.charAt(0));   //å°†å½“å‰æ“ä½œç¬¦å…¥æ ˆ
+			}//else ifè¯­å¥ç»“æŸ
+			//å¦‚æœæ˜¯å·¦æ‹¬å·çš„è¯ç›´æ¥å…¥æ ˆï¼Œä»€ä¹ˆä¹Ÿä¸ç”¨æ“ä½œ,trim()å‡½æ•°æ˜¯ç”¨æ¥å»é™¤ç©ºæ ¼çš„ï¼Œç”±äºä¸Šé¢çš„åˆ†å‰²æ“ä½œå¯èƒ½ä¼šä»¤è¿ç®—ç¬¦å¸¦æœ‰ç©ºæ ¼
+			else if (token.trim().charAt(0) == '(') {
+				operatorStack.push('(');
+			}
+			//å¦‚æœæ˜¯å³æ‹¬å·çš„è¯ï¼Œæ¸…é™¤æ ˆä¸­çš„è¿ç®—ç¬¦ç›´è‡³å·¦æ‹¬å·
+			else if (token.trim().charAt(0) == ')') {
+				while (operatorStack.peek() != '(') {
+					processAnOperator(operandStack, operatorStack);    //å¼€å§‹è¿ç®—
+				}
+				operatorStack.pop();   //è¿™é‡Œçš„æ˜¯è¿ç®—å®Œä¹‹åæ¸…é™¤å·¦æ‹¬å·ï¼Œè®©å·¦æ‹¬å·å‡ºè¿ç®—ç¬¦æ ˆ
+			}
+			//è¿™é‡Œå¦‚æœæ˜¯æ•°å­—çš„è¯ç›´æ¥å…¥æ•°æ®çš„æ ˆ
+			else {
+				operandStack.push(Integer.parseInt(token));   //å°†æ•°å­—å­—ç¬¦ä¸²è½¬æ¢æˆæ•°å­—ç„¶åå‹å…¥æ ˆä¸­
+			}
+		}//forå¾ªç¯ç»“æŸ
+		//æœ€åå½“è¿ç®—ç¬¦æ ˆä¸­ä¸æ˜¯ç©ºçš„æ—¶å€™ç»§ç»­è¿ç®—ï¼Œç›´åˆ°æ ˆä¸­ä¸ºç©ºå³å¯
+		while (!operatorStack.isEmpty()) {
+			processAnOperator(operandStack, operatorStack);
+		}
+		return operandStack.pop();    //æ­¤æ—¶æ•°æ®æ ˆä¸­çš„æ•°æ®å°±æ˜¯è¿ç®—çš„ç»“æœ
+	}//è¿ç®—ç¬¦åˆæ•°æ®ç¬¦å…¥æ ˆæ–¹æ³•ç»“æŸ
 
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
-/**
- * @Õâ¸ö·½·¨µÄ×÷ÓÃÊÇ¼ÆËãµ¯³öµÄÁ½¸öÊı¾İ
- * */
-public void processAnOperator(Stack<Integer> operandStack, Stack<Character> operatorStack) {
-    char op = operatorStack.pop();  //µ¯³öÒ»¸ö²Ù×÷·û
-    int op1 = operandStack.pop();  //´Ó´æ´¢Êı¾İµÄÕ»ÖĞµ¯³öÁ¬¸öÁ½¸öÊıÓÃÀ´ºÍ²Ù×÷·ûopÔËËã
-    int op2 = operandStack.pop();
-    if (op == '+')  //Èç¹û²Ù×÷·ûÎª+¾ÍÖ´ĞĞ¼ÓÔËËã
-        operandStack.push(op2 + op1);
-    else if (op == '-')
-        operandStack.push(op2 - op1);   //ÒòÎªÕâ¸öÊÇÕ»µÄ½á¹¹£¬×ÔÈ»ÊÇÉÏÃæµÄÊı×ÖÊÇºóÃæµÄ£¬Òò´ËÓÃop2-op1
-    else if (op == '*')
-        operandStack.push(op2 * op1);
-    else if (op == '/')
-        operandStack.push(op2 / op1);
-    else if (op == '%')
-        operandStack.push(op2 % op1);
-}
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-/**@ÅĞ¶ÏÎÄ±¾ÇøJA1ÊÇ·ñÎª¿ÕµÄ·½·¨*/
-public void isJA1empty() {
-	if("".equals(JA1.getText())) 
-   	 	b[1].setEnabled(false);
-   else
-   		b[1].setEnabled(true);
-}//ÅĞ¶ÏÎÄ±¾ÇøÊÇ·ñÎª¿ÕµÄ·½·¨½áÊø
-/**@ÅĞ¶ÏÎÄ±¾ÇøÊäÈëµÄµÚÒ»¸ö×Ö·ûÊÇ·ñÎªÊı×ÖµÄ·½·¨
- * @1.Èç¹û²»ÊÇÔòÉèÖÃÎÄ±¾ÇøÎªÎŞĞ§ÊäÈë
- * @2.Èç¹ûÊÇÔò¼ÌĞø
- * */
-public void isCharacter() {
-	if(JA1.getText().charAt(0)=='+'||JA1.getText().charAt(0)=='-'
-			||JA1.getText().charAt(0)=='*'||JA1.getText().charAt(0)=='/'
-			||JA1.getText().charAt(0)=='%') {
-	JA1.setText("ÎŞĞ§ÊäÈë");
-	JA1.setEnabled(false);
-	
+
+	/**
+	 * @è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨æ˜¯è®¡ç®—å¼¹å‡ºçš„ä¸¤ä¸ªæ•°æ®
+	 */
+	public void processAnOperator(Stack<Integer> operandStack, Stack<Character> operatorStack) {
+		char op = operatorStack.pop();  //å¼¹å‡ºä¸€ä¸ªæ“ä½œç¬¦
+		int op1 = operandStack.pop();  //ä»å­˜å‚¨æ•°æ®çš„æ ˆä¸­å¼¹å‡ºè¿ä¸ªä¸¤ä¸ªæ•°ç”¨æ¥å’Œæ“ä½œç¬¦opè¿ç®—
+		int op2 = operandStack.pop();
+		if (op == '+')  //å¦‚æœæ“ä½œç¬¦ä¸º+å°±æ‰§è¡ŒåŠ è¿ç®—
+			operandStack.push(op2 + op1);
+		else if (op == '-')
+			operandStack.push(op2 - op1);   //å› ä¸ºè¿™ä¸ªæ˜¯æ ˆçš„ç»“æ„ï¼Œè‡ªç„¶æ˜¯ä¸Šé¢çš„æ•°å­—æ˜¯åé¢çš„ï¼Œå› æ­¤ç”¨op2-op1
+		else if (op == '*')
+			operandStack.push(op2 * op1);
+		else if (op == '/')
+			operandStack.push(op2 / op1);
+		else if (op == '%')
+			operandStack.push(op2 % op1);
 	}
-	else {
-		JT2.setText(Integer.toString(evaluateExpression(JA1.getText())));
-		JT3.setText(Integer.toBinaryString(evaluateExpression(JA1.getText())));
-		
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+	/**
+	 * @åˆ¤æ–­æ–‡æœ¬åŒºJA1æ˜¯å¦ä¸ºç©ºçš„æ–¹æ³•
+	 */
+	public void isJA1empty() {
+		if ("".equals(JA1.getText()))
+			b[1].setEnabled(false);
+		else
+			b[1].setEnabled(true);
+	}//åˆ¤æ–­æ–‡æœ¬åŒºæ˜¯å¦ä¸ºç©ºçš„æ–¹æ³•ç»“æŸ
+
+	/**
+	 * @åˆ¤æ–­æ–‡æœ¬åŒºè¾“å…¥çš„ç¬¬ä¸€ä¸ªå­—ç¬¦æ˜¯å¦ä¸ºæ•°å­—çš„æ–¹æ³•
+	 * @1.å¦‚æœä¸æ˜¯åˆ™è®¾ç½®æ–‡æœ¬åŒºä¸ºæ— æ•ˆè¾“å…¥
+	 * @2.å¦‚æœæ˜¯åˆ™ç»§ç»­
+	 */
+	public void isCharacter() {
+		if (JA1.getText().charAt(0) == '+' || JA1.getText().charAt(0) == '-'
+				|| JA1.getText().charAt(0) == '*' || JA1.getText().charAt(0) == '/'
+				|| JA1.getText().charAt(0) == '%') {
+			JA1.setText("æ— æ•ˆè¾“å…¥");
+			JA1.setEnabled(false);
+
+		} else {
+			JT2.setText(Integer.toString(evaluateExpression(JA1.getText())));
+			JT3.setText(Integer.toBinaryString(evaluateExpression(JA1.getText())));
+
+		}
+
 	}
-	
-}
 }

@@ -1,16 +1,18 @@
-package java¼ÆËãÆ÷;
+package javaè®¡ç®—å™¨;
 
 import java.util.Stack;
-/**@Ö÷ÒªµÄË¼ÏëÈçÏÂ£º
- * @³ÌĞò´Ó×óµ½ÓÒµÄÉ¨Ãè±í´ïÊ½£¬ÌáÈ¡³ö²Ù×÷Êı£¬²Ù×÷·û£¬ÒÔ¼°À¨ºÅ
- * @Èç¹ûÌáÈ¡µÄÏîÊÇ²Ù×÷ÊıÖ±½Ó½«ÆäÑ¹ÈëoperandStackÊı¾İÕ»ÖĞ
- * @Èç¹ûÌáÈ¡µÄÏîÊÇ+£¬-ÔËËã·û£¬´¦ÀíoperatorStackÕ»¶¥ÖĞµÄËùÓĞÔËËã·û£¬´¦ÀíÍêÖ®ºó½«ÌáÈ¡³öµÄÔËËã·ûÑ¹ÈëÕ»ÖĞ
- * @Èç¹ûÌáÈ¡µÄÏîÊÇ*,/ÔËËã·û£¬´¦ÀíÕ»¶¥µÄËùÓĞ*,/ÔËËã·û£¬Èç¹û´ËÊ±µÄÕ»¶¥µÄÔËËã·ûÊÇ+£¬-ÄÇÃ´Ö±½ÓÈëÕ»£¬´¦ÀíÍêÖ®ºó½«ÌáÈ¡³öµÄÔËËã·ûÈëÕ»
- * @Èç¹ûÌáÈ¡µÄÊÇ'(',ÄÇÃ´Ö±½ÓÑ¹ÈëoperatorStackÕ»ÖĞ
- * @Èç¹ûÌáÈ¡µÄÊÇ')',ÖØ¸´´¦ÀíÀ´×ÔoperatorStackÕ»¶¥µÄÔËËã·û£¬ÖªµÀ¿´µ½Õ»¶¥µÄ'('
+
+/**
+ * @ä¸»è¦çš„æ€æƒ³å¦‚ä¸‹ï¼š
+ * @ç¨‹åºä»å·¦åˆ°å³çš„æ‰«æè¡¨è¾¾å¼ï¼Œæå–å‡ºæ“ä½œæ•°ï¼Œæ“ä½œç¬¦ï¼Œä»¥åŠæ‹¬å·
+ * @å¦‚æœæå–çš„é¡¹æ˜¯æ“ä½œæ•°ç›´æ¥å°†å…¶å‹å…¥operandStackæ•°æ®æ ˆä¸­
+ * @å¦‚æœæå–çš„é¡¹æ˜¯+ï¼Œ-è¿ç®—ç¬¦ï¼Œå¤„ç†operatorStackæ ˆé¡¶ä¸­çš„æ‰€æœ‰è¿ç®—ç¬¦ï¼Œå¤„ç†å®Œä¹‹åå°†æå–å‡ºçš„è¿ç®—ç¬¦å‹å…¥æ ˆä¸­
+ * @å¦‚æœæå–çš„é¡¹æ˜¯*,/è¿ç®—ç¬¦ï¼Œå¤„ç†æ ˆé¡¶çš„æ‰€æœ‰*,/è¿ç®—ç¬¦ï¼Œå¦‚æœæ­¤æ—¶çš„æ ˆé¡¶çš„è¿ç®—ç¬¦æ˜¯+ï¼Œ-é‚£ä¹ˆç›´æ¥å…¥æ ˆï¼Œå¤„ç†å®Œä¹‹åå°†æå–å‡ºçš„è¿ç®—ç¬¦å…¥æ ˆ
+ * @å¦‚æœæå–çš„æ˜¯'(',é‚£ä¹ˆç›´æ¥å‹å…¥operatorStackæ ˆä¸­
+ * @å¦‚æœæå–çš„æ˜¯')',é‡å¤å¤„ç†æ¥è‡ªoperatorStackæ ˆé¡¶çš„è¿ç®—ç¬¦ï¼ŒçŸ¥é“çœ‹åˆ°æ ˆé¡¶çš„'('
  */
 public class OperationDemo {
-	 //Õâ¸ö·½·¨µÄ×÷ÓÃ¾ÍÊÇÊ¹ÓÃ¿Õ¸ñ·Ö¸î×Ö·û´®£¬ÒÔ±ãºóÃæÊ¹ÓÃ·Ö¸îº¯ÊıÊ¹µÃ½«×Ö·û´®·Ö¸î³ÉÊı×é
+    //è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨å°±æ˜¯ä½¿ç”¨ç©ºæ ¼åˆ†å‰²å­—ç¬¦ä¸²ï¼Œä»¥ä¾¿åé¢ä½¿ç”¨åˆ†å‰²å‡½æ•°ä½¿å¾—å°†å­—ç¬¦ä¸²åˆ†å‰²æˆæ•°ç»„
     public String insetBlanks(String s) {
         String result = "";
         for (int i = 0; i < s.length(); i++) {
@@ -26,60 +28,60 @@ public class OperationDemo {
     }
 
     public int evaluateExpression(String expression) {
-        Stack<Integer> operandStack = new Stack<>();//´´½¨Ò»¸öÊı¾İÕ»
-        Stack<Character> operatorStack = new Stack<>();//´´½¨Ò»¸öÔËËã·ûÕ»
-        expression = insetBlanks(expression);//´¦Àí±í´ïÊ½,ÔËËã·ûÇ°ºó¼Ó¿Õ¸ñ
-        String[] tokens = expression.split(" ");//¸ù¾İÆ¥Åä¸ø¶¨µÄÕıÔò±í´ïÊ½À´²ğ·Ö´Ë×Ö·û´®¡£ ·µ»ØÖµÊÇ×Ö·û´®Êı×é
-        for (String token : tokens) {//µ¥¸öÔËËã·û×Ö·û¾ÍÊÇÒ»¸ö×Ö·û´®
-            if (token.length() == 0)   //Èç¹ûÊÇ¿Õ¸ñµÄ»°¾Í¼ÌĞøÑ­»·£¬Ê²Ã´Ò²²»²Ù×÷
+        Stack<Integer> operandStack = new Stack<>();//åˆ›å»ºä¸€ä¸ªæ•°æ®æ ˆ
+        Stack<Character> operatorStack = new Stack<>();//åˆ›å»ºä¸€ä¸ªè¿ç®—ç¬¦æ ˆ
+        expression = insetBlanks(expression);//å¤„ç†è¡¨è¾¾å¼,è¿ç®—ç¬¦å‰ååŠ ç©ºæ ¼
+        String[] tokens = expression.split(" ");//æ ¹æ®åŒ¹é…ç»™å®šçš„æ­£åˆ™è¡¨è¾¾å¼æ¥æ‹†åˆ†æ­¤å­—ç¬¦ä¸²ã€‚ è¿”å›å€¼æ˜¯å­—ç¬¦ä¸²æ•°ç»„
+        for (String token : tokens) {//å•ä¸ªè¿ç®—ç¬¦å­—ç¬¦å°±æ˜¯ä¸€ä¸ªå­—ç¬¦ä¸²
+            if (token.length() == 0)   //å¦‚æœæ˜¯ç©ºæ ¼çš„è¯å°±ç»§ç»­å¾ªç¯ï¼Œä»€ä¹ˆä¹Ÿä¸æ“ä½œ
                 continue;
-            //Èç¹ûÊÇ¼Ó¼õµÄ»°£¬ÒòÎª¼Ó¼õµÄÓÅÏÈ¼¶×îµÍ£¬Òò´ËÕâÀïµÄÖ»ÒªÓöµ½¼Ó¼õºÅ£¬ÎŞÂÛ²Ù×÷·ûÕ»ÖĞµÄÊÇÊ²Ã´ÔËËã·û¶¼ÒªÔËËã
+                //å¦‚æœæ˜¯åŠ å‡çš„è¯ï¼Œå› ä¸ºåŠ å‡çš„ä¼˜å…ˆçº§æœ€ä½ï¼Œå› æ­¤è¿™é‡Œçš„åªè¦é‡åˆ°åŠ å‡å·ï¼Œæ— è®ºæ“ä½œç¬¦æ ˆä¸­çš„æ˜¯ä»€ä¹ˆè¿ç®—ç¬¦éƒ½è¦è¿ç®—
             else if (token.charAt(0) == '+' || token.charAt(0) == '-') {
-                //µ±Õ»²»ÊÇ¿ÕµÄ£¬²¢ÇÒÕ»ÖĞ×îÉÏÃæµÄÒ»¸öÔªËØÊÇ¼Ó¼õ³Ë³ıµÄÈÎÒâÒ»¸ö
-                while (!operatorStack.isEmpty()&&(operatorStack.peek() == '-' || operatorStack.peek() == '+' || operatorStack.peek() == '/' || operatorStack.peek() == '*')) {
-                    processAnOperator(operandStack, operatorStack);   //¿ªÊ¼ÔËËã
+                //å½“æ ˆä¸æ˜¯ç©ºçš„ï¼Œå¹¶ä¸”æ ˆä¸­æœ€ä¸Šé¢çš„ä¸€ä¸ªå…ƒç´ æ˜¯åŠ å‡ä¹˜é™¤çš„ä»»æ„ä¸€ä¸ª
+                while (!operatorStack.isEmpty() && (operatorStack.peek() == '-' || operatorStack.peek() == '+' || operatorStack.peek() == '/' || operatorStack.peek() == '*')) {
+                    processAnOperator(operandStack, operatorStack);   //å¼€å§‹è¿ç®—
                 }
-                operatorStack.push(token.charAt(0));   //ÔËËãÍêÖ®ºó½«µ±Ç°µÄÔËËã·ûÈëÕ»
-            }//else ifÓï¾ä½áÊø
-            //µ±Ç°ÔËËã·ûÊÇ³Ë³ıµÄÊ±ºò£¬ÒòÎªÓÅÏÈ¼¶¸ßÓÚ¼Ó¼õ£¬Òò´ËÒªÅĞ¶Ï×îÉÏÃæµÄÊÇ·ñÊÇ³Ë³ı£¬Èç¹ûÊÇ³Ë³ı¾ÍÔËËã£¬·ñÔòµÄ»°Ö±½ÓÈëÕ»
+                operatorStack.push(token.charAt(0));   //è¿ç®—å®Œä¹‹åå°†å½“å‰çš„è¿ç®—ç¬¦å…¥æ ˆ
+            }//else ifè¯­å¥ç»“æŸ
+            //å½“å‰è¿ç®—ç¬¦æ˜¯ä¹˜é™¤çš„æ—¶å€™ï¼Œå› ä¸ºä¼˜å…ˆçº§é«˜äºåŠ å‡ï¼Œå› æ­¤è¦åˆ¤æ–­æœ€ä¸Šé¢çš„æ˜¯å¦æ˜¯ä¹˜é™¤ï¼Œå¦‚æœæ˜¯ä¹˜é™¤å°±è¿ç®—ï¼Œå¦åˆ™çš„è¯ç›´æ¥å…¥æ ˆ
             else if (token.charAt(0) == '*' || token.charAt(0) == '/') {
-                while (!operatorStack.isEmpty()&&(operatorStack.peek() == '/' || operatorStack.peek() == '*')) {
+                while (!operatorStack.isEmpty() && (operatorStack.peek() == '/' || operatorStack.peek() == '*')) {
                     processAnOperator(operandStack, operatorStack);
                 }
-                operatorStack.push(token.charAt(0));   //½«µ±Ç°²Ù×÷·ûÈëÕ»
-            }//else ifÓï¾ä½áÊø
-            //Èç¹ûÊÇ×óÀ¨ºÅµÄ»°Ö±½ÓÈëÕ»£¬Ê²Ã´Ò²²»ÓÃ²Ù×÷,trim()º¯ÊıÊÇÓÃÀ´È¥³ı¿Õ¸ñµÄ£¬ÓÉÓÚÉÏÃæµÄ·Ö¸î²Ù×÷¿ÉÄÜ»áÁî²Ù×÷·û´øÓĞ¿Õ¸ñ
+                operatorStack.push(token.charAt(0));   //å°†å½“å‰æ“ä½œç¬¦å…¥æ ˆ
+            }//else ifè¯­å¥ç»“æŸ
+            //å¦‚æœæ˜¯å·¦æ‹¬å·çš„è¯ç›´æ¥å…¥æ ˆï¼Œä»€ä¹ˆä¹Ÿä¸ç”¨æ“ä½œ,trim()å‡½æ•°æ˜¯ç”¨æ¥å»é™¤ç©ºæ ¼çš„ï¼Œç”±äºä¸Šé¢çš„åˆ†å‰²æ“ä½œå¯èƒ½ä¼šä»¤æ“ä½œç¬¦å¸¦æœ‰ç©ºæ ¼
             else if (token.trim().charAt(0) == '(') {
                 operatorStack.push('(');
             }
-            //Èç¹ûÊÇÓÒÀ¨ºÅµÄ»°£¬Çå³ıÕ»ÖĞµÄÔËËã·ûÖ±ÖÁ×óÀ¨ºÅ
+            //å¦‚æœæ˜¯å³æ‹¬å·çš„è¯ï¼Œæ¸…é™¤æ ˆä¸­çš„è¿ç®—ç¬¦ç›´è‡³å·¦æ‹¬å·
             else if (token.trim().charAt(0) == ')') {
                 while (operatorStack.peek() != '(') {
-                    processAnOperator(operandStack, operatorStack);    //¿ªÊ¼ÔËËã
+                    processAnOperator(operandStack, operatorStack);    //å¼€å§‹è¿ç®—
                 }
-                operatorStack.pop();   //ÕâÀïµÄÊÇÔËËãÍêÖ®ºóÇå³ı×óÀ¨ºÅ
+                operatorStack.pop();   //è¿™é‡Œçš„æ˜¯è¿ç®—å®Œä¹‹åæ¸…é™¤å·¦æ‹¬å·
             }
-            //ÕâÀïÈç¹ûÊÇÊı×ÖµÄ»°Ö±½ÓÈëÊı¾İµÄÕ»
+            //è¿™é‡Œå¦‚æœæ˜¯æ•°å­—çš„è¯ç›´æ¥å…¥æ•°æ®çš„æ ˆ
             else {
-                operandStack.push(Integer.parseInt(token));   //½«Êı×Ö×Ö·û´®×ª»»³ÉÊı×ÖÈ»ºóÑ¹ÈëÕ»ÖĞ
+                operandStack.push(Integer.parseInt(token));   //å°†æ•°å­—å­—ç¬¦ä¸²è½¬æ¢æˆæ•°å­—ç„¶åå‹å…¥æ ˆä¸­
             }
-        }//forÑ­»·½áÊø
-        //×îºóµ±ÔËËã·ûÕ»ÖĞ²»ÊÇ¿ÕµÄÊ±ºò¼ÌĞøÔËËã£¬Ö±µ½Õ»ÖĞÎª¿Õ¼´¿É
+        }//forå¾ªç¯ç»“æŸ
+        //æœ€åå½“è¿ç®—ç¬¦æ ˆä¸­ä¸æ˜¯ç©ºçš„æ—¶å€™ç»§ç»­è¿ç®—ï¼Œç›´åˆ°æ ˆä¸­ä¸ºç©ºå³å¯
         while (!operatorStack.isEmpty()) {
             processAnOperator(operandStack, operatorStack);
         }
-        return operandStack.pop();    //´ËÊ±Êı¾İÕ»ÖĞµÄÊı¾İ¾ÍÊÇÔËËãµÄ½á¹û
+        return operandStack.pop();    //æ­¤æ—¶æ•°æ®æ ˆä¸­çš„æ•°æ®å°±æ˜¯è¿ç®—çš„ç»“æœ
     }
 
-    //Õâ¸öº¯ÊıµÄ×÷ÓÃ¾ÍÊÇ´¦ÀíÕ»ÖĞµÄÁ½¸öÊı¾İ£¬È»ºó½«Õ»ÖĞµÄÁ½¸öÊı¾İÔËËãÖ®ºó½«½á¹û´æ´¢ÔÚÕ»ÖĞ
+    //è¿™ä¸ªå‡½æ•°çš„ä½œç”¨å°±æ˜¯å¤„ç†æ ˆä¸­çš„ä¸¤ä¸ªæ•°æ®ï¼Œç„¶åå°†æ ˆä¸­çš„ä¸¤ä¸ªæ•°æ®è¿ç®—ä¹‹åå°†ç»“æœå­˜å‚¨åœ¨æ ˆä¸­
     public void processAnOperator(Stack<Integer> operandStack, Stack<Character> operatorStack) {
-        char op = operatorStack.pop();  //µ¯³öÒ»¸ö²Ù×÷·û
-        int op1 = operandStack.pop();  //´Ó´æ´¢Êı¾İµÄÕ»ÖĞµ¯³öÁ¬¸öÁ½¸öÊıÓÃÀ´ºÍ²Ù×÷·ûopÔËËã
+        char op = operatorStack.pop();  //å¼¹å‡ºä¸€ä¸ªæ“ä½œç¬¦
+        int op1 = operandStack.pop();  //ä»å­˜å‚¨æ•°æ®çš„æ ˆä¸­å¼¹å‡ºè¿ä¸ªä¸¤ä¸ªæ•°ç”¨æ¥å’Œæ“ä½œç¬¦opè¿ç®—
         int op2 = operandStack.pop();
-        if (op == '+')  //Èç¹û²Ù×÷·ûÎª+¾ÍÖ´ĞĞ¼ÓÔËËã
+        if (op == '+')  //å¦‚æœæ“ä½œç¬¦ä¸º+å°±æ‰§è¡ŒåŠ è¿ç®—
             operandStack.push(op2 + op1);
         else if (op == '-')
-            operandStack.push(op2 - op1);   //ÒòÎªÕâ¸öÊÇÕ»µÄ½á¹¹£¬×ÔÈ»ÊÇÉÏÃæµÄÊı×ÖÊÇºóÃæµÄ£¬Òò´ËÓÃop2-op1
+            operandStack.push(op2 - op1);   //å› ä¸ºè¿™ä¸ªæ˜¯æ ˆçš„ç»“æ„ï¼Œè‡ªç„¶æ˜¯ä¸Šé¢çš„æ•°å­—æ˜¯åé¢çš„ï¼Œå› æ­¤ç”¨op2-op1
         else if (op == '*')
             operandStack.push(op2 * op1);
         else if (op == '/')
@@ -88,7 +90,7 @@ public class OperationDemo {
 
     public static void main(String[] args) {
 
-    	OperationDemo s = new OperationDemo();
+        OperationDemo s = new OperationDemo();
         String expression = "1-2+3*(4-5)";
         int data = s.evaluateExpression(expression);
         System.out.println(data);
